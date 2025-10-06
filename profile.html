@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Perfil do Usuário</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="container">
+    <div class="profile-box">
+      <img
+        src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
+        alt="Avatar"
+      />
+      <h2 id="profile-name"></h2>
+      <p id="profile-email"></p>
+      <button id="logout-btn">Sair</button>
+    </div>
+  </div>
+
+  <script>
+    const user = JSON.parse(localStorage.getItem("loggedUser"));
+    const nameEl = document.getElementById("profile-name");
+    const emailEl = document.getElementById("profile-email");
+
+    if (!user) {
+      window.location.href = "index.html";
+    } else {
+      nameEl.textContent = user.name;
+      emailEl.textContent = user.email;
+    }
+
+    document.getElementById("logout-btn").addEventListener("click", () => {
+      localStorage.removeItem("loggedUser");
+      window.location.href = "index.html";
+    });
+  </script>
+</body>
+</html>
